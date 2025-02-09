@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stylische Ränge</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-image: url('https://i.postimg.cc/ZqFJc2vk/villager.jpg'); /* Villager-Bild */
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            flex-direction: column;
+        }
+
+        .header {
+            background-color: rgba(59, 56, 56, 0.7);
+            padding: 20px 0;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 30px;
+        }
+
+        .button {
+            padding: 18px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, #6e7bff, #00c3ff);
+        }
+
+        .home, .shop {
+            background: linear-gradient(135deg, #fc466b, #ffc371);
+        }
+
+        .ranks {
+            background: transparent;
+            font-size: 22px;
+            padding: 15px 40px;
+            border: 2px solid white;
+            border-radius: 30px;
+        }
+        .ranks:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffc371;
+            border-color: #ffc371;
+            box-shadow: 0px 8px 20px rgba(255, 204, 0, 0.5);
+        }
+
+        .button i {
+            margin-right: 15px;
+            font-size: 26px;
+        }
+
+        .button img {
+            width: 30px;
+            height: 30px;
+            margin-right: 15px;
+            filter: invert(1);
+        }
+
+        .button:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.5);
+            filter: brightness(1.2);
+            background: linear-gradient(135deg, #ffc371, #fc466b);
+        }
+
+        .button:active {
+            transform: scale(1.05);
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(135deg, #ffc371, #fc466b);
+        }
+
+        /* Neues Design für die Rangkarten */
+        .ranks-list {
+            margin-top: 180px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .rank-item {
+            width: 220px;
+            height: 250px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            border: 1px solid #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            color: white;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .rank-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .rank-item .rank-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .rank-item .rank-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .rank-item .rank-description {
+            font-size: 16px;
+            color: #ddd;
+            text-align: center;
+        }
+
+        .rank-item:nth-child(1) {
+            background: linear-gradient(135deg, #ff6347, #bd6545); /* Block */
+        }
+
+        .rank-item:nth-child(2) {
+            background: linear-gradient(135deg, #ff0000, #ff7300); /* Legend */
+        }
+
+        .rank-item:nth-child(3) {
+            background: linear-gradient(135deg, #19e2d8, #025175); /* Platin */
+        }
+
+        .rank-item:nth-child(4) {
+            background: linear-gradient(135deg, #88ff01, #2d5325c7); /* Titan */
+        }
+
+        .rank-item:nth-child(5) {
+            background: linear-gradient(135deg, #ffbb00, #a7680b); /* Premium */
+        }
+
+        .rank-item:nth-child(6) {
+            background: linear-gradient(135deg, #4d4c4785, #696863); /* Spieler */
+        }
+
+                /* Verhindere die Standard-Link-Stile */
+                a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .image-container {
+            position: absolute;
+            top: -145px;
+            display: flex;
+            justify-content: center;
+            left: 50%; /* Zentriert das Bild */
+            align-items: center;
+            transform: translateX(-50%); /* Erhält die horizontale Zentrierung */
+            background: transparent;
+            box-shadow: none;
+            z-index: 0; /* Das Bild liegt jetzt unterhalb der Buttons */
+            pointer-events: none; /* Verhindert, dass das Bild anklickbar ist */
+        }
+
+        .image-container img {
+            width: 700px;
+            height: auto;
+            border-radius: 10px;
+            animation: bounce 2s infinite alternate;
+            box-shadow: none;
+        }
+
+        @keyframes bounce {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .nav-button {
+            padding: 10px 20px;
+            background-color: #73ff00;
+            color: rgb(255, 255, 255);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .nav-button:disabled {
+            background-color: #ff0000;
+            cursor: not-allowed;
+        }
+
+        /* Verhindere die Standard-Link-Stile */
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-image: url('https://i.postimg.cc/ZqFJc2vk/villager.jpg'); /* Villager-Bild */
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            flex-direction: column;
+        }
+
+        .header {
+            background-color: rgba(59, 56, 56, 0.6);
+            padding: 20px 0;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 30px;
+        }
+
+        .button {
+            padding: 20px 40px;
+            font-size: 22px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, #6e7bff, #00c3ff);
+        }
+
+        .home, .shop {
+            background: linear-gradient(135deg, #fc466b, #ffc371);
+        }
+
+        .ranks {
+            background: transparent;
+            color: white;
+            font-size: 24px;
+            border: 2px solid white;
+            padding: 15px 40px;
+        }
+
+        .button i {
+            margin-right: 15px;
+            font-size: 26px;
+        }
+
+        .button img {
+            width: 30px;
+            height: 30px;
+            margin-right: 15px;
+            filter: invert(1);
+        }
+
+        .button:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.5);
+            filter: brightness(1.2);
+            background: linear-gradient(135deg, #ffc371, #fc466b);
+        }
+
+        .button:active {
+            transform: scale(1.05);
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(135deg, #ffc371, #fc466b);
+        }
+
+        .ranks:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffc371;
+            border-color: #ffc371;
+            box-shadow: 0px 8px 20px rgba(255, 204, 0, 0.5);
+        }
+
+        .onenote-window {
+            width: 800px;
+            height: 500px;
+            background-color: rgba(255, 255, 255, 0.37); /* 40% Transparenz */
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: left;
+            color: #333;
+            position: absolute;
+            z-index: 101; /* Höher als Overlay */
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            overflow-y: auto;
+        }
+
+        .onenote-header {
+            font-size: 28px;
+            font-weight: bold;
+            color: #b88437;
+            margin-bottom: 20px;
+        }
+
+        .onenote-content {
+            font-size: 18px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .image-container {
+            position: absolute;
+            top: -145px;
+            display: flex;
+            justify-content: center;
+            left: 50%; /* Zentriert das Bild */
+            align-items: center;
+            transform: translateX(-50%); /* Erhält die horizontale Zentrierung */
+            background: transparent;
+            box-shadow: none;
+            z-index: 0; /* Das Bild liegt jetzt unterhalb der Buttons */
+            pointer-events: none; /* Verhindert, dass das Bild anklickbar ist */
+        }
+
+        .image-container img {
+            width: 700px;
+            height: auto;
+            border-radius: 10px;
+            animation: bounce 2s infinite alternate;
+            box-shadow: none;
+        }
+
+        @keyframes bounce {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .nav-button {
+            padding: 10px 20px;
+            background-color: #73ff00;
+            color: rgb(255, 255, 255);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .nav-button:disabled {
+            background-color: #ff0000;
+            cursor: not-allowed;
+        }
+
+        /* Verhindere die Standard-Link-Stile */
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="button-container">
+            <a href="index.html">
+                <button class="button home">
+                    <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Home Icon"> HOME
+                </button>
+            </a>
+            <a href="ranks.html">
+                <button class="button ranks">
+                    <i class="fa-solid fa-user-tie"></i> Ränge
+                </button>
+            </a>
+            <a href="shop.html">
+                <button class="button shop">
+                    <i class="fa-solid fa-cart-shopping"></i> SHOP
+                </button>
+            </a>
+        </div>
+    </div>
+
+    <div class="image-container">
+        <img src="https://i.postimg.cc/WpKVrC24/serverlogo-1.png" alt="Bild unter den Buttons">
+    </div>
+
+    <div class="ranks-list">
+        <a href="block.html" class="rank-item">
+            <div class="rank-icon"><i class="fas fa-crown"></i></div>
+            <div class="rank-title">Block</div>
+            <div class="rank-description">Der höchste Rang auf dem Server.</div>
+        </a>
+        <a href="legend.html" class="rank-item">
+            <div class="rank-icon"><i class="fas fa-star"></i></div>
+            <div class="rank-title">Legend</div>
+            <div class="rank-description">Ein legendärer Rang für besondere Spieler.</div>
+        </a>
+        <a href="platin.html" class="rank-item">
+            <div class="rank-icon"><i class="fas fa-trophy"></i></div>
+            <div class="rank-title">Platin</div>
+            <div class="rank-description">Ein exklusiver Rang für treue Spieler.</div>
+        </a>
+        <a href="titan.html" class="rank-item">
+            <div class="rank-icon"><i class="fas fa-gem"></i></div>
+            <div class="rank-title">Titan</div>
+            <div class="rank-description">Ein mächtiger Rang mit vielen Vorteilen.</div>
+        </a>
+        <a href="premium.html" class="rank-item">
+            <div class="rank-icon"><i class="fas fa-shield-alt"></i></div>
+            <div class="rank-title">Premium</div>
+            <div class="rank-description">Ein Premium-Rang für bevorzugte Spieler.</div>
+        </a>
+        <a href="spieler.html" class="rank-item">
+            <div class="rank-icon"><i class="fas fa-users"></i></div>
+            <div class="rank-title">Spieler</div>
+            <div class="rank-description">Der Standardrang für alle Spieler.</div>
+        </a>
+    </div>    
+
+</body>
+</html>
